@@ -1,36 +1,90 @@
 # Astrosismologia (TdR Eduard Carrillo González)
 
-Scripts de python per analitzar l'espectre frequencial de senyals d'origen sísmic de diverses estrelles i calcular diferents paràmetres de les mateixes com per exemple el seu radi i la seva massa.
+Scripts de Python per analitzar l'espectre freqüencial de senyals d'origen sísmic de diverses estrelles i calcular diferents paràmetres de les mateixes com per exemple el seu radi i la seva massa.
+
+## Estructura del projecte
+
+```
+TdR/
+├── dades/                          # Fitxers CSV amb espectres de freqüència
+│   ├── sol.csv
+│   ├── estrellaA.csv
+│   ├── estrellaB.csv
+│   ├── estrellaD.csv
+│   └── estrellasC.csv
+├── output/                         # Resultats generats automàticament
+│   ├── notebooks/                  # Notebooks executats per cada objecte
+│   └── [estrella]/                 # CSVs amb resultats per cada estrella
+│       ├── histogram_*.csv
+│       ├── pairwise_differences.csv
+│       └── peaks_around_central.csv
+├── astrosismologia_utils.py        # Funcions principals d'anàlisi
+├── configuracio_estrelles.py       # Paràmetres per cada objecte
+├── executar_parametritzat.py       # Script per processar totes les estrelles
+├── analisi.ipynb                   # Notebook plantilla d'anàlisi
+├── requeriments.txt                # Dependències del projecte
+└── restore-deps.ps1                # Script d'instal·lació automàtica
+```
 
 ## Dependències
 
-Requereix els següents paquets:
+Requereix Python 3.8 o superior i els següents paquets:
 
-- numpy (operacions amb arrays)
-- matplotlib (gràfiques)
-- jupyter (entorn interactiu per visualitzar i analitzar les dades)
-- papermill (execució parametritzada de notebooks)
+- **numpy** >= 1.24 (operacions amb arrays)
+- **matplotlib** >= 3.7 (visualització de gràfiques)
+- **scipy** >= 1.11 (detecció de pics i anàlisi de senyals)
+- **jupyter** >= 1.0 (entorn interactiu per notebooks)
+- **papermill** >= 2.4 (execució parametritzada de notebooks)
 
 Estan llistats a `requeriments.txt` a l'arrel del repositori.
 
-## Configuració ràpida (Windows / PowerShell)
+## Instal·lació
 
-1. Assegura't de tenir Python 3.8+ instal·lat i disponible al PATH.
-2. Crea i activa un entorn virtual (PowerShell):
+### 1. Instal·lar Python
+
+Si no tens Python instal·lat, descarrega'l des de:
+- **Pàgina oficial**: https://www.python.org/downloads/
+- **Recomanat**: Python 3.10 o superior
+
+Durant la instal·lació a Windows, marca l'opció **"Add Python to PATH"**.
+
+### 2. Configuració de l'entorn virtual (Windows / PowerShell)
+
+1. Crea i activa un entorn virtual:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-3. Instal·la les dependències (això "restaurarà" les dependències del projecte):
+2. Instal·la les dependències:
 
 ```powershell
-# Si 'pip' no està disponible al PATH, utilitza la forma amb el mòdul de Python que
-# funciona amb el mateix intèrpret que has invocat. Exemple:
-python -m pip install -r requirements.txt
+python -m pip install -r requeriments.txt
+```
 
-# Alternativament, pots utilitzar l'script inclòs en aquest repositori per crear
-# el venv i instal·lar dependències sense dependre de 'pip' al PATH:
+**Alternativa automàtica**: Executa l'script inclòs que crea el venv i instal·la tot:
+
+```powershell
 .\restore-deps.ps1
 ```
+
+## Ús
+
+### Processar totes les estrelles automàticament
+
+```powershell
+python executar_parametritzat.py
+```
+
+Aquest script processa el Sol i les 4 estrelles amb els paràmetres òptims definits a `configuracio_estrelles.py`, generant:
+- Notebooks executats a `output/notebooks/`
+- Resultats CSV a `output/[nom_estrella]/`
+
+### Anàlisi interactiva amb Jupyter
+
+```powershell
+jupyter notebook analisi.ipynb
+```
+
+Això obre el notebook plantilla on pots ajustar paràmetres manualment.
