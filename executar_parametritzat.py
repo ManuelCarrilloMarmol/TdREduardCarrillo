@@ -34,25 +34,26 @@ for nom_estrella in llista_estrelles():
     else:
         print("   Sense filtre de soroll")
     print(f"   Rang de selecció: {config['freq_range_min']}-{config['freq_range_max']} {config['freq_unit']}")
-    print(f"   Mode: {config['selection_mode']}")
+    print(f"   Prominence: {config['prominence']} dB, Distance: {config['distance']} mostres")
     print(f"   Bin width: {config['bin_width']} {config['freq_unit']}")
     
     # Executar el notebook amb els paràmetres específics
     output_notebook = os.path.join(OUTPUT_NOTEBOOKS, f'{nom_estrella}_analisi.ipynb')
     
-    # Paràmetres adaptats segons el mode de selecció
+    # Paràmetres per la funció unificada process_spectrum
     params = {
         'DATA_FILE': config['fitxer'],
         'FREQ_UNIT': config['freq_unit'],
         'FREQ_MIN': config.get('freq_min'),  # None per Sol, valor per estrelles
         'FREQ_RANGE_MIN': config['freq_range_min'],
         'FREQ_RANGE_MAX': config['freq_range_max'],
-        'THRESHOLD_DB': config.get('threshold_db', 0.0),  # Només per Sol
+        'PROMINENCE': config['prominence'],
+        'DISTANCE': config['distance'],
         'NUM_PEAKS': config['num_peaks'],
-        'SELECTION_MODE': config['selection_mode'],
         'BIN_WIDTH': config['bin_width'],
         'OUTPUT_DIR': config['output_dir'],
-        'SKIP_MERGE': config['selection_mode'] == 'amplitude'  # No merge per estrelles
+        'CALCULAR_AUTOCORRELACIO': config['calcular_autocorrelacio'],
+        'EXCLUDE_NEAR_ZERO': config['exclude_near_zero']
     }
     
     try:

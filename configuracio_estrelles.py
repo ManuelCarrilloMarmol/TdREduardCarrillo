@@ -12,12 +12,14 @@ CONFIGURACIONS_ESTRELLES = {
         'freq_unit': 'mHz',
         'freq_range_min': 0.0,
         'freq_range_max': 10.0,
-        'threshold_db': 1.0,  # Només per Sol
+        'prominence': 1.0,
+        'distance': 5,
         'num_peaks': 50,
         'bin_width': 0.03,
-        'selection_mode': 'central',
         'output_dir': 'output/sol',
-        'descripcio': 'Sol - Espectre en mHz'
+        'descripcio': 'Sol - Espectre en mHz',
+        'calcular_autocorrelacio': False,  # Sol no necessita autocorrelació
+        'exclude_near_zero': False  # Sol no exclou freqüències baixes a l'histograma
     },
     'estrellaA': {
         'fitxer': 'dades/estrellaA.csv',
@@ -25,11 +27,14 @@ CONFIGURACIONS_ESTRELLES = {
         'freq_min': 50.0,  # Filtrar soroll baix
         'freq_range_min': 150.0,
         'freq_range_max': 283.443,
+        'prominence': 0.5,
+        'distance': 2,
         'num_peaks': 300,
         'bin_width': 0.2,
-        'selection_mode': 'amplitude',
         'output_dir': 'output/estrellaA',
-        'descripcio': 'Estrella A - Espectre en µHz'
+        'descripcio': 'Estrella A - Espectre en µHz',
+        'calcular_autocorrelacio': True,
+        'exclude_near_zero': True
     },
     'estrellaB': {
         'fitxer': 'dades/estrellaB.csv',
@@ -37,11 +42,14 @@ CONFIGURACIONS_ESTRELLES = {
         'freq_min': 50.0,
         'freq_range_min': 120.0,
         'freq_range_max': 240.0,
+        'prominence': 0.5,
+        'distance': 2,
         'num_peaks': 300,
         'bin_width': 0.2,
-        'selection_mode': 'amplitude',
         'output_dir': 'output/estrellaB',
-        'descripcio': 'Estrella B - Espectre en µHz'
+        'descripcio': 'Estrella B - Espectre en µHz',
+        'calcular_autocorrelacio': True,
+        'exclude_near_zero': True
     },
     'estrellaC': {
         'fitxer': 'dades/estrellasC.csv',
@@ -49,11 +57,14 @@ CONFIGURACIONS_ESTRELLES = {
         'freq_min': 100.0,
         'freq_range_min': 100.0,
         'freq_range_max': 150.0,
+        'prominence': 0.5,
+        'distance': 2,
         'num_peaks': 300,
         'bin_width': 0.2,
-        'selection_mode': 'amplitude',
         'output_dir': 'output/estrellaC',
-        'descripcio': 'Estrella C - Espectre en µHz'
+        'descripcio': 'Estrella C - Espectre en µHz',
+        'calcular_autocorrelacio': True,
+        'exclude_near_zero': True
     },
     'estrellaD': {
         'fitxer': 'dades/estrellaD.csv',
@@ -61,11 +72,14 @@ CONFIGURACIONS_ESTRELLES = {
         'freq_min': 20.0,
         'freq_range_min': 25.0,
         'freq_range_max': 100.0,
+        'prominence': 0.5,
+        'distance': 2,
         'num_peaks': 300,
         'bin_width': 0.2,
-        'selection_mode': 'amplitude',
         'output_dir': 'output/estrellaD',
-        'descripcio': 'Estrella D - Espectre en µHz'
+        'descripcio': 'Estrella D - Espectre en µHz',
+        'calcular_autocorrelacio': True,
+        'exclude_near_zero': True
     }
 }
 
