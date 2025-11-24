@@ -12,7 +12,7 @@ from typing import List, Tuple, Optional
 from scipy.signal import find_peaks
 
 
-def load_data(path: str, freq_min: Optional[float] = None, freq_unit: str = 'mHz') -> Tuple[np.ndarray, np.ndarray]:
+def load_data(path: str) -> Tuple[np.ndarray, np.ndarray]:
     """Carrega les dades de freqüència i amplitud des d'un fitxer CSV.
     
     Format esperat: columnes 'Frequencia' i 'Amplitud'
@@ -20,10 +20,6 @@ def load_data(path: str, freq_min: Optional[float] = None, freq_unit: str = 'mHz
     
     Paràmetres:
         path: Ruta al fitxer CSV
-        freq_min: Freqüència mínima per filtrar soroll (en les mateixes unitats que les dades). 
-                  Si és None, no filtra.
-        freq_unit: Unitat de freqüència de les dades ('mHz' o 'microHz'). 
-                   Només informatiu per documentació.
     
     Retorna:
         Tuple amb arrays de freqüències i amplituds (en les unitats originals del fitxer)
@@ -61,10 +57,6 @@ def load_data(path: str, freq_min: Optional[float] = None, freq_unit: str = 'mHz
             try:
                 fval = float(fs)
                 aval = float(as_)
-                
-                # Filtra freqüències baixes si s'especifica
-                if freq_min is not None and fval < freq_min:
-                    continue
                     
             except Exception:
                 dropped += 1
@@ -186,7 +178,6 @@ def plot_spectrum(freqs: np.ndarray, amps: np.ndarray,
                   initial_peaks: List[int] = None,
                   selected_peaks: List[int] = None,
                   global_max_idx: int = None,
-                  title: str = 'Espectre de freqüències',
                   freq_unit: str = 'mHz'):
     """Visualitza l'espectre amb pics marcats.
     
@@ -196,7 +187,6 @@ def plot_spectrum(freqs: np.ndarray, amps: np.ndarray,
         initial_peaks: Pics detectats (opcional)
         selected_peaks: Pics seleccionats finals (opcional)
         global_max_idx: Índex del màxim global (opcional)
-        title: Títol de la gràfica
         freq_unit: Unitat de freqüència ('mHz' o 'microHz')
     """
     # Ordenem per freqüència
@@ -220,9 +210,14 @@ def plot_spectrum(freqs: np.ndarray, amps: np.ndarray,
     
     plt.xlabel(f'Freqüència ({freq_unit})')
     plt.ylabel('Amplitud (dB)')
-    plt.title(title)
+    plt.title('Espectre de freqüències')
     plt.legend(loc='best', fontsize=9)
     plt.grid(alpha=0.3)
+    
+    # Ajustar límits per eliminar marges innecessaris
+    plt.xlim(freqs_sorted.min(), freqs_sorted.max())
+    plt.ylim(amps_sorted.min(), amps_sorted.max())
+    
     plt.tight_layout()
     plt.show()
 

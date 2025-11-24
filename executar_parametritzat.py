@@ -29,10 +29,6 @@ for nom_estrella in llista_estrelles():
     print(f"\n🌟 Processant: {nom_estrella}")
     print(f"   {config['descripcio']}")
     print(f"   Fitxer: {config['fitxer']}")
-    if config.get('freq_min'):
-        print(f"   Filtre de soroll: {config['freq_min']} {config['freq_unit']}")
-    else:
-        print("   Sense filtre de soroll")
     print(f"   Rang de selecció: {config['freq_range_min']}-{config['freq_range_max']} {config['freq_unit']}")
     print(f"   Prominence: {config['prominence']} dB, Distance: {config['distance']} mostres")
     print(f"   Bin width: {config['bin_width']} {config['freq_unit']}")
@@ -44,7 +40,6 @@ for nom_estrella in llista_estrelles():
     params = {
         'DATA_FILE': config['fitxer'],
         'FREQ_UNIT': config['freq_unit'],
-        'FREQ_MIN': config.get('freq_min'),  # None per Sol, valor per estrelles
         'FREQ_RANGE_MIN': config['freq_range_min'],
         'FREQ_RANGE_MAX': config['freq_range_max'],
         'PROMINENCE': config['prominence'],

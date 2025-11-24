@@ -24,7 +24,6 @@ CONFIGURACIONS_ESTRELLES = {
     'estrellaA': {
         'fitxer': 'dades/estrellaA.csv',
         'freq_unit': 'microHz',
-        'freq_min': 50.0,  # Filtrar soroll baix
         'freq_range_min': 150.0,
         'freq_range_max': 283.443,
         'prominence': 0.5,
@@ -39,7 +38,6 @@ CONFIGURACIONS_ESTRELLES = {
     'estrellaB': {
         'fitxer': 'dades/estrellaB.csv',
         'freq_unit': 'microHz',
-        'freq_min': 50.0,
         'freq_range_min': 120.0,
         'freq_range_max': 240.0,
         'prominence': 0.5,
@@ -54,7 +52,6 @@ CONFIGURACIONS_ESTRELLES = {
     'estrellaC': {
         'fitxer': 'dades/estrellasC.csv',
         'freq_unit': 'microHz',
-        'freq_min': 100.0,
         'freq_range_min': 100.0,
         'freq_range_max': 150.0,
         'prominence': 0.5,
@@ -69,7 +66,6 @@ CONFIGURACIONS_ESTRELLES = {
     'estrellaD': {
         'fitxer': 'dades/estrellaD.csv',
         'freq_unit': 'microHz',
-        'freq_min': 20.0,
         'freq_range_min': 25.0,
         'freq_range_max': 100.0,
         'prominence': 0.5,
